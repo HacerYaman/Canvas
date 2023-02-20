@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <com.kyanogen.signatureview.SignatureView
+        xmlns:sign="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/signature_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        sign:penSize="5dp"
+        sign:backgroundColor="#ffffff"
+        sign:penColor="#000000"
+        sign:enableSignature="true"
+        android:layout_above="@+id/optionsHolder"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/optionsHolder"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            >
+
+            <SeekBar
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:id="@+id/penSize"
+                >
+            </SeekBar>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtPenSize"
+                android:text="5dp"
+                android:textStyle="bold"
+                >
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:gravity="end"
+            >
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:id="@+id/eraser"
+                android:background="@color/white"
+                android:layout_weight="1"
+                android:src="@drawable/eraser"
+                android:layout_marginRight="10dp"
+                >
+            </ImageView>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:id="@+id/colorWheel"
+                android:background="@color/white"
+                android:layout_weight="1"
+                android:src="@drawable/colorwheel"
+                android:layout_marginRight="10dp"
+                >
+            </ImageView>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:id="@+id/saveButton"
+                android:background="@color/white"
+                android:layout_weight="1"
+                android:src="@drawable/download"
+                >
+            </ImageView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
