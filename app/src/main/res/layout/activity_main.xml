@@ -25,6 +25,7 @@
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:gravity="center"
+
         >
 
         <LinearLayout
@@ -69,6 +70,17 @@
                 android:background="@color/white"
                 android:layout_weight="1"
                 android:src="@drawable/eraser"
+                android:layout_marginRight="10dp"
+                >
+            </ImageView>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:id="@+id/clear"
+                android:background="@color/white"
+                android:layout_weight="1"
+                android:src="@drawable/clear"
                 android:layout_marginRight="10dp"
                 >
             </ImageView>
