@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,8 +20,15 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.kyanogen.signatureview.SignatureView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
@@ -28,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private static String fileName;
-    File path= new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "myPaintings");
+    File filePath= new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "myPaintings");
     int defColor;
 
     @Override
@@ -39,6 +47,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(view);
 
         defColor= ContextCompat.getColor(MainActivity.this, R.color.black);
+
+        SimpleDateFormat simpleDateFormat= new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+        String date= simpleDateFormat.format(new Date());
+        fileName= filePath+"/"+date+".png";
+
+        if (!filePath.exists()){
+            filePath.mkdirs();
+        }
+
 
         binding.penSize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -80,7 +97,38 @@ public class MainActivity extends AppCompatActivity {
                 binding.signatureView.clearCanvas();
             }
         });
+
+        binding.saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!binding.signatureView.isBitmapEmpty()){
+                    try {
+                        saveImage();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
         askPermission();
+    }
+
+    private void saveImage() throws IOException {
+
+        File file= new File(fileName);
+        Bitmap bitmap= binding.signatureView.getSignatureBitmap();
+
+        ByteArrayOutputStream byteArrayOutputStream= new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream);
+        byte[] bitmapData= byteArrayOutputStream.toByteArray();
+
+        FileOutputStream fileOutputStream= new FileOutputStream(file);
+        fileOutputStream.write(bitmapData);
+        fileOutputStream.flush();
+        fileOutputStream.close();
+
+        Toast.makeText(this, "Painting Saved!", Toast.LENGTH_SHORT).show();
     }
 
     private void openColorWheel() {
