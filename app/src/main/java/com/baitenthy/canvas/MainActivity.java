@@ -154,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
-                        Toast.makeText(MainActivity.this, "permission granted!", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
