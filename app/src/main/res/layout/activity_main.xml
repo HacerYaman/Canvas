@@ -6,51 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-    <com.kyanogen.signatureview.SignatureView
-        xmlns:sign="http://schemas.android.com/apk/res-auto"
+    <com.kyanogen.signatureview.SignatureView xmlns:sign="http://schemas.android.com/apk/res-auto"
         android:id="@+id/signature_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        sign:penSize="5dp"
+        android:layout_above="@+id/optionsHolder"
         sign:backgroundColor="#ffffff"
-        sign:penColor="#000000"
         sign:enableSignature="true"
-        android:layout_above="@+id/optionsHolder"/>
+        sign:penColor="#000000"
+        sign:penSize="5dp" />
 
     <LinearLayout
+        android:id="@+id/optionsHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/optionsHolder"
-        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:gravity="center"
+        android:orientation="horizontal"
 
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="4dp"
-            >
+            android:layout_weight="1">
 
             <SeekBar
+                android:id="@+id/penSize"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:id="@+id/penSize"
-                >
+                android:layout_marginStart="1dp"
+                android:layout_weight="1">
+
             </SeekBar>
 
             <TextView
+                android:id="@+id/txtPenSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtPenSize"
                 android:text="5dp"
-                android:textStyle="bold"
-                >
+                android:textStyle="bold">
+
             </TextView>
 
         </LinearLayout>
@@ -58,52 +55,63 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="0dp"
             android:layout_weight="1"
-            android:layout_margin="4dp"
-            android:gravity="end"
-            >
+            android:gravity="end">
 
             <ImageView
+                android:id="@+id/pen"
                 android:layout_width="0dp"
-                android:layout_height="45dp"
+                android:layout_height="55dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:src="@drawable/pencil">
+
+            </ImageView>
+
+            <ImageView
                 android:id="@+id/eraser"
-                android:background="@color/white"
-                android:layout_weight="1"
-                android:src="@drawable/eraser"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
                 android:layout_marginRight="10dp"
-                >
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:src="@drawable/eraser">
+
             </ImageView>
 
             <ImageView
-                android:layout_width="0dp"
-                android:layout_height="45dp"
                 android:id="@+id/clear"
-                android:background="@color/white"
-                android:layout_weight="1"
-                android:src="@drawable/clear"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
                 android:layout_marginRight="10dp"
-                >
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:src="@drawable/clear">
+
             </ImageView>
 
             <ImageView
-                android:layout_width="0dp"
-                android:layout_height="45dp"
                 android:id="@+id/colorWheel"
-                android:background="@color/white"
-                android:layout_weight="1"
-                android:src="@drawable/colorwheel"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
                 android:layout_marginRight="10dp"
-                >
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:src="@drawable/colorwheel">
+
             </ImageView>
 
             <ImageView
-                android:layout_width="0dp"
-                android:layout_height="45dp"
                 android:id="@+id/saveButton"
-                android:background="@color/white"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
                 android:layout_weight="1"
-                android:src="@drawable/download"
-                >
+                android:background="@color/white"
+                android:onClick="saveFile"
+                android:src="@drawable/download">
+
             </ImageView>
 
         </LinearLayout>
